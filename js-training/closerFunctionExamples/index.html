@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clouser</title>
+</head>
+<body style="background-color: #313131;">
+
+
+    <button id="red">Red</button>
+    <button id="green">Green</button>
+    <button id="pink">Pink</button>
+    <button id="yellow">Yellow</button>
+    <button id="blue">blue</button>
+
+
+    <script>
+
+        function changeBgColor(color) {
+            function innreColor() {
+                document.querySelector("body").style.backgroundColor = color;
+                localStorage.setItem("color", color)
+            }
+            return innreColor;
+        }
+
+        const btns = document.querySelectorAll("button");
+
+        btns.forEach((btn) => {
+            btn.addEventListener("click", changeBgColor(btn.id))
+        })
+
+        window.addEventListener("load", function () {
+            const savedColor = localStorage.getItem("color")
+            if (savedColor) {
+                document.querySelector("body").style.backgroundColor = savedColor;
+            }
+        })
+
+
+    </script>
+
+</body>
+</html>

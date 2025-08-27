@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Order App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #orderBtn {
+            background: #4caf50;
+            color: white;
+        }
+
+        #resetBtn {
+            background: #f44336;
+            color: white;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🍔 Food Order</h2>
+        <button id="orderBtn">Place Order</button>
+        <button id="resetBtn">Reset</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        const orderBtn = document.getElementById("orderBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const message = document.getElementById("message");
+
+        function placeOrder() {
+            message.textContent = "⏳ Placing your order...";
+
+            const orderPromise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const success = Math.random() > 0.5; // 50% chance
+                    if (success) {
+                        resolve("✅ Order Confirmed! Food is on the way.");
+                    } else {
+                        reject("❌ Order Rejected! Restaurant is closed.");
+                    }
+                }, 1000);
+            });
+
+            orderPromise
+                .then(result => {
+                    message.style.color = "green";
+                    message.textContent = result;
+                })
+                .catch(error => {
+                    message.style.color = "red";
+                    message.textContent = error;
+                })
+                .finally(() => {
+                    console.log("Order process complete.");
+                });
+        }
+
+        orderBtn.addEventListener("click", placeOrder);
+
+        resetBtn.addEventListener("click", () => {
+            message.textContent = "";
+            message.style.color = "black";
+        });
+    </script>
+</body>
+</html>

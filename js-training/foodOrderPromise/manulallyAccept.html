@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Order App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 320px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #orderBtn {
+            background: #4caf50;
+            color: white;
+        }
+
+        #acceptBtn {
+            background: #2196f3;
+            color: white;
+        }
+
+        #rejectBtn {
+            background: #f44336;
+            color: white;
+        }
+
+        #resetBtn {
+            background: #9e9e9e;
+            color: white;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🍔 Food Order</h2>
+        <button id="orderBtn">Place Order</button>
+        <div class="btnsContainer">
+            <button id="acceptBtn" disabled>Accept</button>
+            <button id="rejectBtn" disabled>Reject</button>
+        </div>
+        <button id="resetBtn">Reset</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        const orderBtn = document.getElementById("orderBtn");
+        const acceptBtn = document.getElementById("acceptBtn");
+        const rejectBtn = document.getElementById("rejectBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const message = document.getElementById("message");
+        const btnsContainer = document.querySelector(".btnsContainer");
+
+        let resolveOrder, rejectOrder;
+
+        function placeOrder() {
+            message.style.color = "black";
+            message.textContent = "⏳ Waiting for restaurant to respond...";
+
+            // create promise but control resolve/reject later
+            const orderPromise = new Promise((resolve, reject) => {
+                resolveOrder = resolve;
+                rejectOrder = reject;
+            });
+
+            // handle results
+            orderPromise
+                .then(result => {
+                    message.style.color = "green";
+                    message.textContent = result;
+                })
+                .catch(error => {
+                    message.style.color = "red";
+                    message.textContent = error;
+                });
+
+            // enable accept/reject
+            acceptBtn.disabled = false;
+            rejectBtn.disabled = false;
+            orderBtn.disabled = true;
+        }
+
+        orderBtn.addEventListener("click", placeOrder);
+
+        acceptBtn.addEventListener("click", () => {
+            resolveOrder("✅ Order Accepted! Food is on the way.");
+            acceptBtn.disabled = true;
+            rejectBtn.disabled = true;
+        });
+
+        rejectBtn.addEventListener("click", () => {
+            rejectOrder("❌ Order Rejected! Restaurant is closed.");
+            acceptBtn.disabled = true;
+            rejectBtn.disabled = true;
+        });
+
+        resetBtn.addEventListener("click", () => {
+            message.textContent = "";
+            orderBtn.disabled = false;
+            acceptBtn.disabled = true;
+            rejectBtn.disabled = true;
+        });
+    </script>
+</body>
+</html>

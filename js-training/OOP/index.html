@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Car Management</h1>
+
+    <!-- Filter Dropdown -->
+    <label for="filter">Filter Cars:</label>
+    <select id="filterBox">
+        <option value="all">All</option>
+        <option value="available">Available</option>
+        <option value="not">Not Available</option>
+    </select>
+
+    <!-- Car Form -->
+    <form id="carForm">
+        <input id="image" placeholder="Image URL" required />
+        <input id="brand" placeholder="Brand Name" required />
+        <input id="color" placeholder="Color" required />
+        <input id="model" placeholder="Model Year" required />
+        <input id="version" placeholder="Version" required />
+        <input id="company" placeholder="Company" required />
+        <select id="avail">
+            <option value="true">Available</option>
+            <option value="false">Not Available</option>
+        </select>
+        <input id="price" type="number" placeholder="Price" required />
+        <button type="submit">Add Car</button>
+    </form>
+
+    <!-- Car List -->
+    <div id="carList"></div>
+
+    <script src="script.js">
+
+    </script>
+
+</body>
+</html>

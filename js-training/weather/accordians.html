@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .accordian {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 15px;
+      font-family: sans-serif;
+    }
+
+    .accordian h1 {
+      font-size: 24px;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .accordian p {
+      font-size: 16px;
+      display: none;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="accordian">
+    <h1 class="title">Lorem ipsum dolor</h1>
+    <p style="display: block;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro pariatur delectus velit
+      quibusdam nesciunt
+      incidunt consequuntur consectetur harum voluptatum, ratione autem error doloremque iure omnis explicabo impedit in
+      eaque corporis?</p>
+  </div>
+
+  <div class="accordian">
+    <h1 class="title">Lorem ipsum dolor</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro pariatur delectus velit quibusdam nesciunt
+      incidunt
+      consequuntur consectetur harum voluptatum, ratione autem error doloremque iure omnis explicabo impedit in eaque
+      corporis?</p>
+  </div>
+
+  <div class="accordian">
+    <h1 class="title">Lorem ipsum dolor</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro pariatur delectus velit quibusdam nesciunt
+      incidunt
+      consequuntur consectetur harum voluptatum, ratione autem error doloremque iure omnis explicabo impedit in eaque
+      corporis?</p>
+  </div>
+
+  <div class="accordian">
+    <h1 class="title">Lorem ipsum dolor</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro pariatur delectus velit quibusdam nesciunt
+      incidunt
+      consequuntur consectetur harum voluptatum, ratione autem error doloremque iure omnis explicabo impedit in eaque
+      corporis?</p>
+  </div>
+
+
+  <script>
+    const titles = document.querySelectorAll(".accordian h1")
+    const text = document.querySelectorAll(".accordian p")
+
+    titles.forEach((title) => {
+      title.addEventListener("click", function () {
+
+        let sibling = title.nextElementSibling
+
+        if (sibling.style.display === "block") {
+          sibling.style.display = "none"
+        } else {
+          text.forEach((p) => {
+            p.style.display = "none";
+
+          })
+          sibling.style.display = "block"
+        }
+
+      })
+    })
+
+  </script>
+</body>
+</html>

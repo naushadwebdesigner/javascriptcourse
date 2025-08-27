@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Sidebar Demo</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background: #333;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+        }
+
+        .sidebar.fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            background: #f5f5f5;
+            height: 200vh;
+            /* content long so that scroll ho */
+        }
+
+        .footer {
+            background: #444;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">📌 Sticky Sidebar</div>
+    <div class="content">
+        <h1>Main Content</h1>
+        <p>Scroll down to see the sidebar stick...</p>
+        <p style="margin-top:120vh">Almost at the footer...</p>
+        <div class="footer">🚀 Footer</div>
+    </div>
+
+    <script>
+        const sidebar = document.querySelector(".sidebar");
+        const footer = document.querySelector(".footer");
+
+        let observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    sidebar.classList.remove("fixed"); // footer dikhe -> sidebar normal
+                } else {
+                    sidebar.classList.add("fixed"); // footer na dikhe -> sidebar fixed
+                }
+            });
+        });
+
+        observer.observe(footer);
+    </script>
+</body>
+</html>

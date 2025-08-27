@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: 50px auto;
+    }
+
+    .inputDivs {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .inputDivs input {
+        width: 32%;
+        height: 30px;
+        padding: 0 15px;
+    }
+
+    .inputDivs button {
+        background-color: orange;
+        border-radius: 10px;
+        border: 0;
+        padding: 8px 20px;
+        cursor: pointer;
+    }
+
+    .delete button {
+        background-color: red;
+        border-radius: 10px;
+        border: 0;
+        padding: 8px 20px;
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .taskParent {
+        padding: 20px 20px 10px;
+        border: 1px solid #ddd;
+        margin-top: 30px;
+        margin-bottom: 10px;
+
+    }
+
+    .tasklists:last-child {
+        border: 0;
+    }
+
+    .tasklists {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<body>
+
+
+    <div class="container">
+        <div class="inputDivs">
+            <input type="text" id="taksnameInput">
+            <input type="date" id="dateInput">
+            <button id="addtaskBtn">Add Task</button>
+        </div>
+
+
+        <div class="taskParent">
+
+        </div>
+
+
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
